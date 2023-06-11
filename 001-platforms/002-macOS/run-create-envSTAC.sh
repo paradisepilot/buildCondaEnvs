@@ -28,7 +28,7 @@ pkgsCONDA=( \
     "pystac" \
     "rioxarray" \
     "sklearn-xarray" \
-    # "stackstac" \
+    # "stackstac" \ # conda unable to resolve conflicts in macOS
     # "pyarrow" \
     "r-arrow" \
     "r-sf=1.0_12" \
