@@ -86,11 +86,13 @@ pkgsPyPI=( \
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 timeStamp=`date +"%Y%m%d%H%M%S"`
 myEnvName=envGeo${timeStamp}
+myEnvPath=/home/jovyan/envs/${myEnvName}
 echo;echo "[`date +"%Y-%m-%d:%H-%M-%S"`] ${myEnvName} environment build begins"
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 echo;echo "[`date +"%Y-%m-%d:%H-%M-%S"`] creation of new empty environment (${myEnvName}) begins"
-conda create --yes --name ${myEnvName}
+# conda create --yes --name ${myEnvName}
+conda create --yes --prefix ${myEnvPath}
 sleep 2
 myEnvFolder=`conda env list | egrep "${myEnvName}" | sed 's/[ ][ ]*/ /g' | cut -d' ' -f2,2`
 echo;echo "[`date +"%Y-%m-%d:%H-%M-%S"`] creation of new empty environment (${myEnvName}) complete"
@@ -109,7 +111,8 @@ echo;echo "[`date +"%Y-%m-%d:%H-%M-%S"`] conda packages installation begins"
 for temppkg in "${pkgsCONDA[@]}"
 do
     echo "    [`date +"%Y-%m-%d:%H-%M-%S"`] conda installion begins: ${temppkg}"
-    conda install --yes --name ${myEnvName} \
+    # conda install --yes --name ${myEnvName} \
+    conda install --yes --prefix ${myEnvPath} \
         --channel conda-forge \
         --channel "conda-forge/label/broken" \
         --channel "conda-forge/label/cf201901" \
